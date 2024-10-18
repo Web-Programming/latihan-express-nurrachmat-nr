@@ -1,7 +1,7 @@
 ## Config the MongoDB Connection 
 1. Buka file app_server > models > db.js
 2. Ubah variable `dbURI` menuju server mongodb.com
-`let dbURI = "mongodb+srv://paw2:si@paw2.iendmj6.mongodb.net/?retryWrites=true&w=majority&appName=paw2"`
+`let dbURI = "mongodb+srv://paw2:si@paw2.iendmj6.mongodb.net/PAWII-SI?retryWrites=true&w=majority&appName=paw2"`
 
 ## Create Collection Schema
 1. Buat file baru di dalam folder app_server > models dengan nama `mahasiswa.js`
