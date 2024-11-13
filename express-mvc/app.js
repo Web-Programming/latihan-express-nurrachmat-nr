@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+<<<<<<< HEAD
 app.use('/mahasiswa', mhsRouter);
 =======
 >>>>>>> 9a56162b6714c6652dce5f94d541eb2fab779a0b
