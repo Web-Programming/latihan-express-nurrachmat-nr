@@ -9,6 +9,7 @@ require('./app_server/models/db');
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var mhsRouter = require("./app_server/routes/mahasiswa");
+var housingRouter = require('./app_server/routes/housing');
 
 //pisah router
 var mhsRouter = require('./app_server/routes/mahasiswa');
@@ -27,11 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-<<<<<<< HEAD
 app.use('/mahasiswa', mhsRouter);
-=======
-app.use('/api/mahasiswas', mhsRouter);
->>>>>>> 9a56162b6714c6652dce5f94d541eb2fab779a0b
+app.use('/housing', housingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

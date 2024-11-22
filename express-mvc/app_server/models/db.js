@@ -17,7 +17,4 @@ mongoose.connection.on("disconected", () => {
     console.log("Disconnected From MongoDB");
 });
 
-<<<<<<< HEAD
 require("./mahasiswa");
-=======
->>>>>>> 9a56162b6714c6652dce5f94d541eb2fab779a0b
