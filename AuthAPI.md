@@ -5,7 +5,7 @@
 1. Buat file `user.js` di dalam folder **app_server > models**
 2. Import module `crypto` dan `jsonwebtoken`
 
-> Crypto dan jsonwebtoken adalah dua dependensi penting dalam Node.js untuk mendukung keamanan aplikasi:
+> Crypto dan jsonwebtoken adalah dua dependensi penting dalam Node.js untuk mendukung keamanan aplikasi:c
 
 > Crypto : 
 > - Modul bawaan Node.js yang menyediakan fungsi kriptografi seperti enkripsi, hashing, dan pembuatan kunci.
