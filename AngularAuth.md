@@ -1,7 +1,119 @@
 ## Membuat Component dan Router
 1. Buat component register dan form register
-2. Buat component login dan form login
+- Kode lengkap template register.component.html
+```html
+<section class="register">
+  <h1 class="auth-heading">Register to our platform</h1>
+  <div class="alert-danger" *ngIf="formError">{{formError}}</div>
+  <form [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+    <label for="name">Name</label>
+    <input type="text" id="name" formControlName="name" placeholder="Input your name">
+    <div
+        *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+        class="alert-danger"
+      >
+      <div class="alert-danger" *ngIf="name?.errors?.['required']">Name is required.</div>
+      <div class="alert-danger" *ngIf="name?.errors?.['minlength']">
+        Name must be at least 2 characters long.
+      </div>
+    </div>
 
+    <label for="email">Email</label>
+    <input type="email" id="email" formControlName="email" placeholder="Input your email">
+    <div
+        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+        class="alert-danger"
+      >
+      <div class="alert-danger" *ngIf="email?.errors?.['required']">Email is required.</div>
+      <div class="alert-danger" *ngIf="email?.errors?.['email']">
+        Email must be a valid email address
+      </div>
+
+    </div>
+
+
+    <label for="password">Password</label>
+    <input type="password" id="password" formControlName="password" placeholder="Input your password">
+    <div
+        *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+        class="alert-danger"
+      >
+      <div class="alert-danger" *ngIf="password?.errors?.['required']">Password is required.</div>
+      <div class="alert-danger" *ngIf="password?.errors?.['minlength']">
+        Name must be at least 6 characters long.
+      </div>
+    </div>
+    <button type="submit" class="primary" [disabled]="registerForm.invalid">Register</button>
+  </form>
+</section>
+```
+- Lengkapi class register.component.ts
+```ts
+  registerForm: FormGroup;
+  formError: String ="";
+  
+  //Inject class Router dan service authentication  
+
+  constructor(private fb: FormBuilder) {
+    this.registerForm = this.fb.group({
+      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    });
+  }
+
+  get name() {
+    return this.registerForm.get('name');
+  }
+  
+  get email() {
+    return this.registerForm.get('email');
+  }
+
+  get password() {
+    return this.registerForm.get('password');
+  }
+
+  submitRegister(): void {
+    if (this.registerForm.valid) {
+      const formData = this.registerForm.value;
+
+      console.log('Form submitted', formData);
+      //Panggil method submitRegister()
+    } else {
+      this.formError = 'All fields are required, please try again';
+      //console.log('Form is not valid');
+    }
+  }
+```
+2. Buat component login dan form login
+- Lengkapi template login.component.html
+``` html
+<section>
+    <h3 class="auth-heading">Login</h3>
+    <div class="alert-danger" *ngIf="formError">{{formError}}</div>
+    <form [formGroup]="loginForm"  (submit)="onLoginSubmit()">
+        
+        <div>
+            <label for="email">Username</label>
+            <input type="email" name="email" id="email" placeholder="name@gmail.com" required formControlName="email" />
+
+        </div>
+        <div>
+            <label for="password" >Password</label>
+            <input type="password" name="password" id="password" placeholder="Your Password Here" required formControlName="password" />
+        </div>
+        
+        <button type="submit" class="primary">
+            Sign in
+        </button>
+        <p >
+            Don’t have an account yet?
+            <a routerLink="/register" >Sign up</a>
+        </p>
+    </form>
+</section>
+```
 - Lengkapi class login.component.ts
 ```ts
   formError: String = "";
@@ -36,6 +148,18 @@
   }
 ```
 3. Buat route ke halaman **register** dan halaman **login**
+```ts
+    {
+        path:'register',
+        component: RegisterComponent,
+        title: 'Register Page'
+    },
+    {
+        path:'login',
+        component: LoginComponent,
+        title: 'Login Page'
+    }
+```
 
 ## Mengimplementasikan Register API
 1. Buat **auth** interface

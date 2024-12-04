@@ -16,7 +16,7 @@ export class LoginComponent {
   loginForm: FormGroup;
 
   router: Router = inject(Router);
-  authenticationService: AuthenticationService = inject(AuthenticationService);
+  authService: AuthenticationService = inject(AuthenticationService);
 
   constructor(private fb: FormBuilder){
     this.loginForm = this.fb.group({
@@ -38,7 +38,17 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
       console.log('Form submitted', formData);
-      //Panggil method loginAuth()
+      const {email, password} from this.loginForm
+      this.authService.loginAuth(this.loginForm).then((res)=>{
+        if(res.message != null){
+          this.formError = res.message;
+        }else if(res.token !=null){
+          this.authService.saveToken(res.token);
+          this.router.navigateByUrl('/');
+        }else{
+          this.formError = 'Register failed please try again';
+        }
+      });
       
     }else{
         this.formError = 'All fields are required, please try again';
