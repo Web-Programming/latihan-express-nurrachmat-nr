@@ -23,4 +23,8 @@ export class HousingService {
     email: String){
       console.log(firstName, lastName, email);
   }
+
+  submitRegister(){
+      console.log();
+  }
 }
