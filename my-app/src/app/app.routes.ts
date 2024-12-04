@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { authGuard } from './auth.guard';
 export const routes: Routes = [
     {
         path:'',
@@ -12,7 +13,8 @@ export const routes: Routes = [
     {
         path:'details/:id',
         component: DetailsComponent,
-        title:'Details Page'
+        title:'Details Page',
+        canActivate: [authGuard]
     },
     {
         path:'register',

@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { User } from '../user';
 
 @Component({
   selector: 'app-login',
@@ -38,8 +39,8 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;
       console.log('Form submitted', formData);
-      const {email, password} from this.loginForm
-      this.authService.loginAuth(this.loginForm).then((res)=>{
+      const user = {...this.loginForm.value} as User
+      this.authService.loginAuth(user).then((res)=>{
         if(res.message != null){
           this.formError = res.message;
         }else if(res.token !=null){
