@@ -1,0 +1,25 @@
+
+<section>
+    <h3 class="auth-heading">Login</h3>
+    <div class="alert-danger" *ngIf="formError">{{formError}}</div>
+    <form [formGroup]="loginForm"  (submit)="onLoginSubmit()">
+        
+        <div>
+            <label for="email">Username</label>
+            <input type="email" name="email" id="email" placeholder="name@gmail.com" required formControlName="email" />
+
+        </div>
+        <div>
+            <label for="password" >Password</label>
+            <input type="password" name="password" id="password" placeholder="Your Password Here" required formControlName="password" />
+        </div>
+        
+        <button type="submit" class="primary">
+            Sign in
+        </button>
+        <p >
+            Don’t have an account yet?
+            <a routerLink="/register" >Sign up</a>
+        </p>
+    </form>
+</section>

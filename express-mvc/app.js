@@ -4,6 +4,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 //load mongodb db connection
 require('./app_server/models/db');
 require("./app_server/configs/passport"); //load file config
@@ -14,7 +15,7 @@ var mhsRouter = require("./app_server/routes/mahasiswa");
 var housingRouter = require('./app_server/routes/housing');
 
 var app = express();
-
+app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'ejs');
@@ -25,10 +26,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all domains
   next();
-});
+});*/
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/mahasiswa', mhsRouter);
