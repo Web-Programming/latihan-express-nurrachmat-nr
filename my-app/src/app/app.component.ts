@@ -4,12 +4,13 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AuthenticationService } from './authentication.service';
 import { User } from './user';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, HomeComponent],
+  imports: [CommonModule, RouterOutlet, RouterModule, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -9,8 +9,8 @@ import { BROWSER_STORAGE } from './storage';
 })
 export class AuthenticationService {
   constructor(@Inject(BROWSER_STORAGE) private storage: Storage) { }
-
-  url = "https://laughing-waffle-qxqpjxp6wwf4554-3000.app.github.dev"
+  url = "http://localhost:3000";
+  //url = "https://laughing-waffle-qxqpjxp6wwf4554-3000.app.github.dev"
   async submitRegister(registerdata : FormGroup) : Promise<Auth>{
     const data = await fetch(`${this.url}/users/register`, {
       method: 'post',
